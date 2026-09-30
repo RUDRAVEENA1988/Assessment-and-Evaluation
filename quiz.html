@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Quiz | LMS</title>
+    <title>Online Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header class="header">
@@ -15,6 +17,7 @@
         </div>
 
         <nav class="nav-links">
+            <a href="home.html" class="nav-link">Home</a>
             <a href="index.html" class="nav-link">Assignments</a>
             <a href="quiz.html" class="nav-link active">Online Quiz</a>
             <a href="question.html" class="nav-link">Question Bank</a>
@@ -22,15 +25,23 @@
             <a href="evaluation.html" class="nav-link">Evaluation</a>
         </nav>
 
-        <div class="student-info">
-            <span>Welcome, Rishab</span>
-        </div>
+
     </header>
 
     <main class="container">
         <div class="quiz-container">
             <div class="quiz-header-card">
-                <h2>Web Development Quiz</h2>
+                <div class="subject-select-wrapper">
+                    <label for="quizSubjectSelect" class="subject-select-label">Choose Subject Quiz:</label>
+                    <select id="quizSubjectSelect" class="subject-select-dropdown">
+                        <option value="html">📄 HTML (HyperText Markup Language)</option>
+                        <option value="css">🎨 CSS (Cascading Style Sheets)</option>
+                        <option value="js">⚡ JavaScript (JS)</option>
+                        <option value="dbms">🗄️ DBMS & SQL</option>
+                        <option value="webdev">🌐 Full Stack Web Development</option>
+                    </select>
+                </div>
+                <h2 id="quiz-title">Web Development Quiz</h2>
                 <p id="question-number">Question 1 of 10</p>
             </div>
 
@@ -50,7 +61,7 @@
 
             <div id="result-container" class="quiz-result-container">
                 <h2>Quiz Completed!</h2>
-                
+
                 <div class="quiz-result-stats">
                     <div class="quiz-stat-card">
                         <span>Total Questions</span>
@@ -58,11 +69,11 @@
                     </div>
                     <div class="quiz-stat-card">
                         <span>Correct Answers</span>
-                        <strong id="correct-answers" style="color: #16a34a;">0</strong>
+                        <strong id="correct-answers" style="color: var(--brand-green);">0</strong>
                     </div>
                     <div class="quiz-stat-card">
                         <span>Wrong Answers</span>
-                        <strong id="wrong-answers" style="color: #dc2626;">0</strong>
+                        <strong id="wrong-answers" style="color: #f87171;">0</strong>
                     </div>
                     <div class="quiz-stat-card">
                         <span>Score</span>
@@ -74,11 +85,17 @@
                     </div>
                 </div>
 
-                <button id="restart-btn" class="quiz-btn quiz-btn-restart">Restart Quiz</button>
+                <div class="quiz-share-actions">
+                    <button id="whatsappQuizShareBtn" class="btn btn-whatsapp" onclick="shareQuizOnWhatsApp()">
+                        <span class="whatsapp-icon">📱</span> Share Score via WhatsApp
+                    </button>
+                    <button id="restart-btn" class="quiz-btn quiz-btn-restart">Restart Quiz</button>
+                </div>
             </div>
         </div>
     </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Evaluation & Result Portal | LMS</title>
+  <title>Result Portal</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="header">
@@ -15,6 +17,7 @@
     </div>
 
     <nav class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
       <a href="index.html" class="nav-link">Assignments</a>
       <a href="quiz.html" class="nav-link">Online Quiz</a>
       <a href="question.html" class="nav-link">Question Bank</a>
@@ -22,9 +25,6 @@
       <a href="evaluation.html" class="nav-link">Evaluation</a>
     </nav>
 
-    <div class="student-info">
-      <span>Welcome, Rishab</span>
-    </div>
   </header>
 
   <main class="container">
@@ -32,7 +32,7 @@
       <!-- Entry Form -->
       <section class="card form-section">
         <h2>Enter Assessment Marks</h2>
-        
+
         <div class="input-group">
           <label for="studentName">Student Name</label>
           <input type="text" id="studentName" value="Rishab Sharma" placeholder="Enter student name">
@@ -111,6 +111,13 @@
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="progressBar"></div>
           </div>
+
+          <!-- WHATSAPP SHARE SECTION -->
+          <div class="share-section">
+            <button id="whatsappShareBtn" class="btn btn-whatsapp" onclick="shareResultOnWhatsApp()">
+              <span class="whatsapp-icon">📱</span> Share Result via WhatsApp
+            </button>
+          </div>
         </div>
       </section>
     </div>
@@ -118,4 +125,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

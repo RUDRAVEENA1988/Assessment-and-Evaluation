@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Question Bank | LMS</title>
+  <title>Question Bank</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="header">
@@ -15,6 +17,7 @@
     </div>
 
     <nav class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
       <a href="index.html" class="nav-link">Assignments</a>
       <a href="quiz.html" class="nav-link">Online Quiz</a>
       <a href="question.html" class="nav-link active">Question Bank</a>
@@ -22,9 +25,6 @@
       <a href="evaluation.html" class="nav-link">Evaluation</a>
     </nav>
 
-    <div class="student-info">
-      <span>Welcome, Rishab</span>
-    </div>
   </header>
 
   <main class="container">
@@ -77,11 +77,13 @@
 
       <!-- RIGHT: QUESTION BANK LIST -->
       <section class="card qb-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #e5e7eb; padding-bottom:12px;">
+        <div
+          style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--border-color); padding-bottom:12px;">
           <h3>Question Repository</h3>
-          <span style="font-size:13px; color:#4b5563;">
-            Total: <b id="totalQ">0</b> &nbsp;|&nbsp;
-            <select id="filterType" onchange="renderQuestions()" style="width:auto; display:inline-block; padding:4px 8px;">
+          <span style="font-size:13px; color:var(--text-muted);">
+            Total: <b id="totalQ" style="color:var(--brand-orange);">0</b> &nbsp;|&nbsp;
+            <select id="filterType" onchange="renderQuestions()"
+              style="width:auto; display:inline-block; padding:4px 8px;">
               <option value="All">All Types</option>
               <option value="MCQ">MCQ Only</option>
               <option value="Descriptive">Descriptive Only</option>
@@ -96,4 +98,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
