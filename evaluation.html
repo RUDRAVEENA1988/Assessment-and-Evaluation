@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evaluation Dashboard | LMS</title>
+  <title>Evaluation Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="header">
@@ -15,6 +17,7 @@
     </div>
 
     <nav class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
       <a href="index.html" class="nav-link">Assignments</a>
       <a href="quiz.html" class="nav-link">Online Quiz</a>
       <a href="question.html" class="nav-link">Question Bank</a>
@@ -22,9 +25,6 @@
       <a href="evaluation.html" class="nav-link active">Evaluation</a>
     </nav>
 
-    <div class="student-info">
-      <span>Welcome, Evaluator</span>
-    </div>
   </header>
 
   <main class="container">
@@ -64,13 +64,13 @@
         </div>
 
         <div style="margin: 16px 0;">
-          <label style="font-size:13px; font-weight:700; color:#374151;">Student's Submitted Answer:</label>
+          <label style="font-size:13px; font-weight:700;">Student's Submitted Answer:</label>
           <div class="answer-display" id="answer"></div>
         </div>
 
         <div id="formPart">
-          <h4 style="margin: 16px 0 10px; color:#1e3a8a;">Enter Grade & Feedback</h4>
-          
+          <h4 style="margin: 16px 0 10px; color: var(--text-white);">Enter Grade & Feedback</h4>
+
           <div class="grid-2">
             <div>
               <label for="marks">Marks Obtained *</label>
@@ -102,4 +102,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

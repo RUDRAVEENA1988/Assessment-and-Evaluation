@@ -110,6 +110,74 @@ const assignments = [
             "Explain semantic HTML.",
             "Give two accessibility best practices."
         ]
+    },
+    {
+        id: 7,
+        title: "DOM Manipulation & Events",
+        subject: "JavaScript",
+        description:
+            "Explain how to manipulate HTML DOM elements dynamically using JavaScript event listeners and methods.",
+        dueDate: "28 October 2026",
+        maxMarks: 25,
+        status: "pending",
+        answer: "",
+        instructions: [
+            "Explain getElementById and querySelector.",
+            "Demonstrate how to attach addEventListener.",
+            "Provide code for creating and appending an element dynamically.",
+            "Explain the difference between event bubbling and capturing."
+        ]
+    },
+    {
+        id: 8,
+        title: "Asynchronous JavaScript & APIs",
+        subject: "JavaScript",
+        description:
+            "Discuss Promises, async/await, and fetching remote data using the Fetch API.",
+        dueDate: "2 November 2026",
+        maxMarks: 30,
+        status: "submitted",
+        answer: "Async/await provides syntactic sugar over JavaScript Promises for handling asynchronous HTTP requests cleanly with try/catch error handling.",
+        instructions: [
+            "Explain what a Promise is and its three states.",
+            "Write a snippet using fetch() with async and await.",
+            "Explain error handling with try...catch.",
+            "Contrast synchronous vs asynchronous execution."
+        ]
+    },
+    {
+        id: 9,
+        title: "Git & Version Control Workflow",
+        subject: "Software Engineering",
+        description:
+            "Explain standard Git workflows, branch strategies, and resolving merge conflicts.",
+        dueDate: "7 November 2026",
+        maxMarks: 20,
+        status: "pending",
+        answer: "",
+        instructions: [
+            "Explain git init, git add, git commit and git push.",
+            "What is feature branching and why is it recommended?",
+            "How do you resolve a Git merge conflict?",
+            "Explain the difference between git merge and git rebase."
+        ]
+    },
+    {
+        id: 10,
+        title: "Database Fundamentals & SQL Queries",
+        subject: "Database Management",
+        description:
+            "Explain relational database concepts, primary/foreign keys, and essential SQL queries.",
+        dueDate: "12 November 2026",
+        maxMarks: 25,
+        status: "pending",
+        answer: "",
+        instructions: [
+            "Define primary key and foreign key with real-world examples.",
+            "Write standard SELECT, INSERT, UPDATE, and DELETE queries.",
+            "Explain INNER JOIN vs LEFT JOIN with a diagram or explanation.",
+            "What is database normalization and why is 3NF used?"
+        ]
     }
 ];
 
@@ -516,6 +584,17 @@ class ResultCalculator {
                 this.displays.statusBadge.className = 'status-badge badge-fail';
             }
         }
+
+        // Cache for WhatsApp share
+        window.latestResult = {
+            name: name,
+            assignment: `${assignment} / ${this.maxMarks.assignment}`,
+            quiz: `${quiz} / ${this.maxMarks.quiz}`,
+            final: `${finalAssessment} / ${this.maxMarks.finalAssessment}`,
+            total: `${totalObtained} / ${totalMaximum}`,
+            percentage: `${percentage.toFixed(2)}%`,
+            status: percentage >= 40 ? 'PASSED 🎓' : 'NEEDS IMPROVEMENT 📚'
+        };
     }
 }
 
@@ -711,118 +790,357 @@ function showEvalResult() {
 }
 
 // ========================================================
-// 5. QUIZ MODULE
+// 5. MULTI-SUBJECT QUIZ MODULE (HTML, CSS, JS, DBMS, WEB DEV)
 // ========================================================
-const quizQuestions = [
-    {
-        question: "What does HTML stand for?",
-        options: [
-            "Hyper Text Markup Language",
-            "High Text Machine Language",
-            "Hyper Tool Markup Language",
-            "Home Tool Markup Language"
-        ],
-        answer: 0
+const quizSubjects = {
+    html: {
+        title: "HTML (HyperText Markup Language) Quiz",
+        badge: "HTML",
+        questions: [
+            {
+                question: "What does HTML stand for?",
+                options: [
+                    "Hyper Text Markup Language",
+                    "High Text Machine Language",
+                    "Hyper Tool Markup Language",
+                    "Home Tool Markup Language"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which HTML tag is used to create the largest heading?",
+                options: ["<h6>", "<head>", "<h1>", "<header>"],
+                answer: 2
+            },
+            {
+                question: "Which tag is used to insert an image in HTML?",
+                options: ["<image>", "<img>", "<pic>", "<src>"],
+                answer: 1
+            },
+            {
+                question: "Which attribute specifies the destination URL of a hyperlink in an <a> tag?",
+                options: ["src", "link", "href", "target"],
+                answer: 2
+            },
+            {
+                question: "Which HTML element represents an unordered bulleted list?",
+                options: ["<ol>", "<ul>", "<li>", "<list>"],
+                answer: 1
+            },
+            {
+                question: "What is the correct HTML element for inserting a line break?",
+                options: ["<break>", "<lb>", "<br>", "<hr>"],
+                answer: 2
+            },
+            {
+                question: "Which HTML5 element is used to specify a footer for a document or section?",
+                options: ["<bottom>", "<footer>", "<section-end>", "<foot>"],
+                answer: 1
+            },
+            {
+                question: "Which HTML tag is used to define an internal stylesheet?",
+                options: ["<script>", "<css>", "<style>", "<link>"],
+                answer: 2
+            },
+            {
+                question: "Which attribute is used to provide an alternative text for an image if it cannot be displayed?",
+                options: ["title", "description", "alt", "caption"],
+                answer: 2
+            },
+            {
+                question: "Which doctype declaration is correct for modern HTML5 documents?",
+                options: [
+                    "<!DOCTYPE html>",
+                    "<!DOCTYPE HTML5>",
+                    "<!DOCTYPE html PUBLIC>",
+                    "<html version='5'>"
+                ],
+                answer: 0
+            }
+        ]
     },
-    {
-        question: "Which language is used to style a web page?",
-        options: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Python"
-        ],
-        answer: 1
+    css: {
+        title: "CSS (Cascading Style Sheets) Quiz",
+        badge: "CSS",
+        questions: [
+            {
+                question: "What does CSS stand for?",
+                options: [
+                    "Cascading Style Sheets",
+                    "Colorful Style Sheets",
+                    "Computer Style Syntax",
+                    "Creative Styling System"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which CSS property is used to change the background color of an element?",
+                options: ["color", "bgcolor", "background-color", "surface-color"],
+                answer: 2
+            },
+            {
+                question: "Which symbol is used to select elements with a specific class in CSS?",
+                options: [". (dot)", "# (hash)", "* (asterisk)", "@ (at)"],
+                answer: 0
+            },
+            {
+                question: "Which symbol is used to select elements with a specific ID in CSS?",
+                options: [". (dot)", "# (hash)", "& (ampersand)", "$ (dollar)"],
+                answer: 1
+            },
+            {
+                question: "Which CSS property controls the text size of an element?",
+                options: ["font-size", "text-size", "font-style", "text-scale"],
+                answer: 0
+            },
+            {
+                question: "What is the default value of the 'position' property in CSS?",
+                options: ["relative", "absolute", "static", "fixed"],
+                answer: 2
+            },
+            {
+                question: "Which CSS display property turns a container into a flexible one-dimensional layout?",
+                options: ["display: flex", "display: grid", "display: block", "display: inline-block"],
+                answer: 0
+            },
+            {
+                question: "In the CSS Box Model, which layer surrounds the padding and content?",
+                options: ["Margin", "Border", "Outline", "Box-shadow"],
+                answer: 1
+            },
+            {
+                question: "Which property is used to add space outside of an element's border?",
+                options: ["padding", "margin", "spacing", "gap"],
+                answer: 1
+            },
+            {
+                question: "Which CSS at-rule is used to apply different styles for different media types or screen sizes?",
+                options: ["@media", "@screen", "@responsive", "@viewport"],
+                answer: 0
+            }
+        ]
     },
-    {
-        question: "Which language is mainly used to add interactivity to web pages?",
-        options: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "SQL"
-        ],
-        answer: 2
+    js: {
+        title: "JavaScript (JS) Programming Quiz",
+        badge: "JavaScript",
+        questions: [
+            {
+                question: "Which keyword is used to declare a block-scoped variable that can be reassigned?",
+                options: ["var", "let", "const", "def"],
+                answer: 1
+            },
+            {
+                question: "Which method is used to output diagnostic information to the browser web console?",
+                options: ["console.log()", "print()", "document.write()", "alert()"],
+                answer: 0
+            },
+            {
+                question: "What is the return type of typeof null in JavaScript?",
+                options: ["'null'", "'undefined'", "'object'", "'boolean'"],
+                answer: 2
+            },
+            {
+                question: "Which operator checks for both value and type equality in JavaScript?",
+                options: ["==", "===", "=", "!="],
+                answer: 1
+            },
+            {
+                question: "Which built-in method converts a JavaScript object into a JSON string?",
+                options: ["JSON.parse()", "JSON.stringify()", "JSON.toText()", "JSON.encode()"],
+                answer: 1
+            },
+            {
+                question: "How do you select an HTML element by its ID using JavaScript?",
+                options: [
+                    "document.getElementById()",
+                    "document.queryId()",
+                    "document.selectId()",
+                    "window.findId()"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which array method creates a new array with all elements that pass a test function?",
+                options: ["map()", "filter()", "forEach()", "reduce()"],
+                answer: 1
+            },
+            {
+                question: "Which keyword is used to handle exceptions in JavaScript alongside try?",
+                options: ["catch", "except", "error", "rescue"],
+                answer: 0
+            },
+            {
+                question: "What is a Promise in JavaScript?",
+                options: [
+                    "An object representing the eventual completion or failure of an asynchronous operation",
+                    "A variable that cannot be changed",
+                    "A function that executes continuously in an infinite loop",
+                    "A CSS animation handler"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which method is used to attach an event handler to a DOM element without overwriting existing handlers?",
+                options: ["addEventListener()", "attachEvent()", "on()", "bindEvent()"],
+                answer: 0
+            }
+        ]
     },
-    {
-        question: "Which HTML tag is used to create a paragraph?",
-        options: [
-            "<p>",
-            "<h1>",
-            "<div>",
-            "<br>"
-        ],
-        answer: 0
+    dbms: {
+        title: "Database Management (DBMS & SQL) Quiz",
+        badge: "DBMS & SQL",
+        questions: [
+            {
+                question: "What does SQL stand for?",
+                options: [
+                    "Structured Question Language",
+                    "Structured Query Language",
+                    "Simple Query Logic",
+                    "Sequential Query Language"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which SQL clause is used to filter records from a table?",
+                options: ["ORDER BY", "GROUP BY", "WHERE", "HAVING"],
+                answer: 2
+            },
+            {
+                question: "Which key uniquely identifies each record in a database table?",
+                options: ["Foreign Key", "Primary Key", "Secondary Key", "Composite Key"],
+                answer: 1
+            },
+            {
+                question: "Which SQL statement is used to insert new records into a table?",
+                options: ["ADD RECORD", "INSERT INTO", "UPDATE", "PUT INTO"],
+                answer: 1
+            },
+            {
+                question: "What does ACID stand for in DBMS transactions?",
+                options: [
+                    "Atomicity, Consistency, Isolation, Durability",
+                    "Access, Control, Integrity, Data",
+                    "Automatic, Compact, Indexed, Distributed",
+                    "Action, Commit, Inspect, Done"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which command is used to permanently remove a table and its structure from a database?",
+                options: ["DELETE", "TRUNCATE", "DROP", "REMOVE"],
+                answer: 2
+            },
+            {
+                question: "Which SQL function is used to find the total count of rows?",
+                options: ["SUM()", "TOTAL()", "COUNT()", "NUMBER()"],
+                answer: 2
+            },
+            {
+                question: "What type of join returns all matching records from both tables?",
+                options: ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "FULL OUTER JOIN"],
+                answer: 2
+            },
+            {
+                question: "What is the process of organizing database fields and tables to reduce redundancy called?",
+                options: ["Indexing", "Normalization", "Denormalization", "Sharding"],
+                answer: 1
+            },
+            {
+                question: "Which SQL constraint ensures that a column cannot contain NULL values?",
+                options: ["UNIQUE", "NOT NULL", "CHECK", "DEFAULT"],
+                answer: 1
+            }
+        ]
     },
-    {
-        question: "Which symbol is used for an ID selector in CSS?",
-        options: [
-            ".",
-            "#",
-            "*",
-            "@"
-        ],
-        answer: 1
-    },
-    {
-        question: "Which keyword is used to declare a variable in JavaScript?",
-        options: [
-            "variable",
-            "var",
-            "integer",
-            "string"
-        ],
-        answer: 1
-    },
-    {
-        question: "Which method is used to display a message in the browser console?",
-        options: [
-            "console.log()",
-            "print()",
-            "display()",
-            "message()"
-        ],
-        answer: 0
-    },
-    {
-        question: "Which HTML tag is used to create a hyperlink?",
-        options: [
-            "<link>",
-            "<a>",
-            "<href>",
-            "<url>"
-        ],
-        answer: 1
-    },
-    {
-        question: "Which CSS property is used to change text color?",
-        options: [
-            "font-size",
-            "background",
-            "color",
-            "text-style"
-        ],
-        answer: 2
-    },
-    {
-        question: "Which keyword can be used to define a constant in JavaScript?",
-        options: [
-            "let",
-            "constant",
-            "const",
-            "fixed"
-        ],
-        answer: 2
+    webdev: {
+        title: "Full Stack Web Development Quiz",
+        badge: "Web Dev",
+        questions: [
+            {
+                question: "Which protocol is the foundation of data communication for the World Wide Web?",
+                options: ["HTTP", "FTP", "SMTP", "SSH"],
+                answer: 0
+            },
+            {
+                question: "Which HTTP status code indicates that a requested resource was successfully found and returned?",
+                options: ["200 OK", "404 Not Found", "500 Internal Error", "301 Moved"],
+                answer: 0
+            },
+            {
+                question: "What does API stand for in software and web development?",
+                options: [
+                    "Application Programming Interface",
+                    "Automated Protocol Interaction",
+                    "Applied Process Integration",
+                    "App Page Index"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which web architecture style uses standard HTTP methods like GET, POST, PUT, and DELETE?",
+                options: ["REST", "SOAP", "RPC", "CORBA"],
+                answer: 0
+            },
+            {
+                question: "What is the role of client-side JavaScript in web architecture?",
+                options: [
+                    "Directly hosting database engines",
+                    "Enhancing browser interactivity and dynamic DOM updates",
+                    "Managing operating system memory kernels",
+                    "Routing network cables"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is CORS in web applications?",
+                options: [
+                    "Cross-Origin Resource Sharing",
+                    "Central Operating Routing System",
+                    "Client Offline Request Service",
+                    "Cascading Online Rendering Sheets"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which format is most commonly used for transmitting structured data between client and server?",
+                options: ["JSON", "YAML", "CSV", "Binary Blob"],
+                answer: 0
+            },
+            {
+                question: "What is the purpose of LocalStorage in web browsers?",
+                options: [
+                    "Storing key-value data persistently in the client's browser with no expiration date",
+                    "Running backend server scripts",
+                    "Compressing video files",
+                    "Encrypting local hardware"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which CSS property is used to create multi-column grid layouts with rows and tracks?",
+                options: ["display: grid", "display: inline", "display: table-cell", "display: float"],
+                answer: 0
+            },
+            {
+                question: "What is responsive web design?",
+                options: [
+                    "Making web pages render well on a variety of devices, window and screen sizes",
+                    "Building websites that respond to voice only",
+                    "A site that only works on desktop PCs",
+                    "Writing code without styles"
+                ],
+                answer: 0
+            }
+        ]
     }
-];
+};
 
 function initQuizModule() {
     const questionElement = document.getElementById("question");
     if (!questionElement) return;
 
-    let currentQuestion = 0;
-    let selectedAnswers = new Array(quizQuestions.length).fill(null);
-
+    const quizTitle = document.getElementById("quiz-title");
+    const subjectSelect = document.getElementById("quizSubjectSelect");
     const questionNumber = document.getElementById("question-number");
     const optionsContainer = document.getElementById("options");
     const previousButton = document.getElementById("previous-btn");
@@ -837,10 +1155,39 @@ function initQuizModule() {
     const restartButton = document.getElementById("restart-btn");
     const quizCard = document.querySelector(".quiz-card");
 
+    let currentSubjectKey = (subjectSelect && subjectSelect.value) || "webdev";
+    let activeSubject = quizSubjects[currentSubjectKey] || quizSubjects.webdev;
+    let quizQuestions = activeSubject.questions;
+    let currentQuestion = 0;
+    let selectedAnswers = new Array(quizQuestions.length).fill(null);
+
+    function setSubject(subjectKey) {
+        if (!quizSubjects[subjectKey]) return;
+        currentSubjectKey = subjectKey;
+        activeSubject = quizSubjects[subjectKey];
+        quizQuestions = activeSubject.questions;
+        currentQuestion = 0;
+        selectedAnswers = new Array(quizQuestions.length).fill(null);
+
+        if (quizTitle) {
+            quizTitle.textContent = activeSubject.title;
+        }
+        if (resultContainer) resultContainer.style.display = "none";
+        if (quizCard) quizCard.style.display = "block";
+
+        displayQuestion();
+    }
+
+    if (subjectSelect) {
+        subjectSelect.addEventListener("change", (e) => {
+            setSubject(e.target.value);
+        });
+    }
+
     function displayQuestion() {
         const current = quizQuestions[currentQuestion];
         if (questionNumber) {
-            questionNumber.textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            questionNumber.textContent = `${activeSubject.badge} • Question ${currentQuestion + 1} of ${quizQuestions.length}`;
         }
         if (questionElement) {
             questionElement.textContent = current.question;
@@ -899,6 +1246,16 @@ function initQuizModule() {
 
         if (resultContainer) resultContainer.style.display = "block";
         if (quizCard) quizCard.style.display = "none";
+
+        // Cache for WhatsApp share
+        window.latestQuizResult = {
+            subject: activeSubject.title,
+            total: totalQuestions,
+            correct: correctAnswers,
+            wrong: wrongAnswers,
+            score: `${correctAnswers} / ${totalQuestions}`,
+            percentage: `${percentage}%`
+        };
     }
 
     if (nextButton) {
@@ -933,6 +1290,7 @@ function initQuizModule() {
         });
     }
 
+    // Initialize first display
     displayQuestion();
 }
 
@@ -954,3 +1312,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initQuizModule();
 });
+
+// ========================================================
+// 6. WHATSAPP RESULT SHARING HANDLERS
+// ========================================================
+function shareResultOnWhatsApp() {
+    const res = window.latestResult || {
+        name: document.getElementById('displayName')?.textContent || 'Student',
+        assignment: document.getElementById('displayAssignment')?.textContent || 'N/A',
+        quiz: document.getElementById('displayQuiz')?.textContent || 'N/A',
+        final: document.getElementById('displayFinal')?.textContent || 'N/A',
+        total: document.getElementById('displayTotal')?.textContent || 'N/A',
+        percentage: document.getElementById('displayPercentage')?.textContent || 'N/A',
+        status: document.getElementById('statusBadge')?.textContent || 'PASSED'
+    };
+
+    const text = 
+`🎓 *Learning Management System (LMS)*
+📋 *Assessment Result Card*
+━━━━━━━━━━━━━━━━━━━━
+👤 *Student:* ${res.name}
+📝 *Assignment Marks:* ${res.assignment}
+⏱️ *Quiz Marks:* ${res.quiz}
+🎯 *Final Assessment:* ${res.final}
+━━━━━━━━━━━━━━━━━━━━
+🏆 *Total Score:* ${res.total}
+📊 *Percentage:* ${res.percentage}
+🎖️ *Result Status:* ${res.status}
+━━━━━━━━━━━━━━━━━━━━
+_Shared via LMS Student Portal_ ✨`;
+
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedText}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+function shareQuizOnWhatsApp() {
+    const q = window.latestQuizResult || {
+        subject: document.getElementById('quiz-title')?.textContent || 'Online Quiz',
+        total: document.getElementById('total-questions')?.textContent || '10',
+        correct: document.getElementById('correct-answers')?.textContent || '0',
+        wrong: document.getElementById('wrong-answers')?.textContent || '0',
+        score: document.getElementById('score')?.textContent || '0/10',
+        percentage: document.getElementById('percentage')?.textContent || '0%'
+    };
+
+    const text = 
+`⚡ *${q.subject || 'Online Assessment Quiz'}*
+🎯 *Learning Management System (LMS)*
+━━━━━━━━━━━━━━━━━━━━
+📝 *Total Questions:* ${q.total}
+✅ *Correct Answers:* ${q.correct}
+❌ *Wrong Answers:* ${q.wrong}
+━━━━━━━━━━━━━━━━━━━━
+🏆 *My Score:* ${q.score}
+📊 *Accuracy Percentage:* ${q.percentage}
+━━━━━━━━━━━━━━━━━━━━
+Take the challenge yourself on the LMS Portal! 🚀`;
+
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedText}`;
+    window.open(whatsappUrl, '_blank');
+}
