@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz | LMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Learning Management System</h1>
+            <p>Interactive Knowledge Assessment</p>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Assignments</a>
+            <a href="quiz.html" class="nav-link active">Online Quiz</a>
+            <a href="question.html" class="nav-link">Question Bank</a>
+            <a href="result.html" class="nav-link">Result Portal</a>
+            <a href="evaluation.html" class="nav-link">Evaluation</a>
+        </nav>
+
+        <div class="student-info">
+            <span>Welcome, Rishab</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="quiz-container">
+            <div class="quiz-header-card">
+                <h2>Web Development Quiz</h2>
+                <p id="question-number">Question 1 of 10</p>
+            </div>
+
+            <div class="quiz-card">
+                <h3 id="question">Question will appear here</h3>
+
+                <div id="options">
+                    <!-- Options injected dynamically by script.js -->
+                </div>
+
+                <div class="quiz-button-container">
+                    <button id="previous-btn" class="quiz-btn quiz-btn-prev">Previous</button>
+                    <button id="next-btn" class="quiz-btn quiz-btn-next">Next</button>
+                    <button id="submit-btn" class="quiz-btn quiz-btn-submit">Submit Quiz</button>
+                </div>
+            </div>
+
+            <div id="result-container" class="quiz-result-container">
+                <h2>Quiz Completed!</h2>
+                
+                <div class="quiz-result-stats">
+                    <div class="quiz-stat-card">
+                        <span>Total Questions</span>
+                        <strong id="total-questions">0</strong>
+                    </div>
+                    <div class="quiz-stat-card">
+                        <span>Correct Answers</span>
+                        <strong id="correct-answers" style="color: #16a34a;">0</strong>
+                    </div>
+                    <div class="quiz-stat-card">
+                        <span>Wrong Answers</span>
+                        <strong id="wrong-answers" style="color: #dc2626;">0</strong>
+                    </div>
+                    <div class="quiz-stat-card">
+                        <span>Score</span>
+                        <strong id="score">0</strong>
+                    </div>
+                    <div class="quiz-stat-card">
+                        <span>Percentage</span>
+                        <strong id="percentage">0%</strong>
+                    </div>
+                </div>
+
+                <button id="restart-btn" class="quiz-btn quiz-btn-restart">Restart Quiz</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
