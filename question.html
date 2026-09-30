@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Bank | LMS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div>
+      <h1>Learning Management System</h1>
+      <p>Question Bank & Assessment Generator</p>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Assignments</a>
+      <a href="question.html" class="nav-link active">Question Bank</a>
+      <a href="result.html" class="nav-link">Result Portal</a>
+    </nav>
+
+    <div class="student-info">
+      <span>Welcome, Rishab</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="qb-layout">
+      <!-- LEFT: ADD / EDIT QUESTION FORM -->
+      <section class="card qb-card">
+        <h3 id="formHead">Add New Question</h3>
+        <input type="hidden" id="editId">
+
+        <label for="qText">Question Text *</label>
+        <textarea id="qText" rows="3" placeholder="Ex: What is the Virtual DOM in React?"></textarea>
+
+        <div style="display:flex; gap:12px;">
+          <div style="flex:1;">
+            <label for="qType">Type</label>
+            <select id="qType" onchange="changeType()">
+              <option value="MCQ">MCQ</option>
+              <option value="Descriptive">Descriptive</option>
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label for="qMarks">Marks *</label>
+            <input id="qMarks" type="number" min="1" placeholder="Ex: 5" value="5">
+          </div>
+        </div>
+
+        <label for="qSubject">Subject</label>
+        <input id="qSubject" placeholder="Ex: Web Development, JavaScript" value="Web Development">
+
+        <div id="mcqSection">
+          <label>Options A - D</label>
+          <input id="optA" placeholder="Option A" value="Virtual copy of real DOM">
+          <input id="optB" placeholder="Option B" value="A browser extension">
+          <input id="optC" placeholder="Option C" value="A database table">
+          <input id="optD" placeholder="Option D" value="None of the above">
+
+          <label for="qCorrect">Correct Answer</label>
+          <select id="qCorrect">
+            <option value="">Select Correct Option</option>
+            <option value="A" selected>A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" onclick="saveData()" style="width:100%; margin-top:12px;">Save Question</button>
+        <button class="btn btn-secondary" onclick="resetForm()" style="width:100%; margin-top:8px;">Reset Form</button>
+      </section>
+
+      <!-- RIGHT: QUESTION BANK LIST -->
+      <section class="card qb-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #e5e7eb; padding-bottom:12px;">
+          <h3>Question Repository</h3>
+          <span style="font-size:13px; color:#4b5563;">
+            Total: <b id="totalQ">0</b> &nbsp;|&nbsp;
+            <select id="filterType" onchange="renderQuestions()" style="width:auto; display:inline-block; padding:4px 8px;">
+              <option value="All">All Types</option>
+              <option value="MCQ">MCQ Only</option>
+              <option value="Descriptive">Descriptive Only</option>
+            </select>
+          </span>
+        </div>
+
+        <div id="questionList"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

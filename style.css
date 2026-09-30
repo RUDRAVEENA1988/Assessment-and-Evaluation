@@ -399,3 +399,289 @@ textarea:focus {
         gap: 12px;
     }
 }
+
+/* ========================================================
+   NAVIGATION & UNIFIED APP STYLES
+   ======================================================== */
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #dbeafe;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.nav-link.active {
+    background: #ffffff;
+    color: #1e3a8a;
+}
+
+/* Question Bank & Result Page Layouts */
+.qb-layout, .result-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 24px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.qb-card h3, .form-section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #1e3a8a;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #2563eb;
+}
+
+.readonly-input {
+    background: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.btn {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.btn-edit {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.btn-del {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.b-mcq {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.b-desc {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.q-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+    background: #f9fafb;
+}
+
+.q-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.q-item h4 {
+    font-size: 15px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.opt-list {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    padding-left: 18px;
+}
+
+.correct-ans {
+    color: #16a34a;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* Result Section Styles */
+.result-card {
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.result-header {
+    border-bottom: 2px dashed #cbd5e1;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.student-name-display {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.marks-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.marks-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.summary-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.summary-row.total {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.summary-row.percentage {
+    font-size: 22px;
+    font-weight: 800;
+    color: #2563eb;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #2563eb;
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-pass {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge-fail {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 900px) {
+    .qb-layout, .result-layout {
+        grid-template-columns: 1fr;
+    }
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
