@@ -685,3 +685,82 @@ input:focus, select:focus, textarea:focus {
         gap: 12px;
     }
 }
+
+/* ========================================================
+   EVALUATION DASHBOARD STYLES
+   ======================================================== */
+.eval-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.eval-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.eval-table th, .eval-table td {
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+    font-size: 14px;
+}
+
+.eval-table th {
+    background: #f1f5f9;
+    color: #1e3a8a;
+    font-weight: 700;
+}
+
+.eval-table tr:hover {
+    background: #f9fafb;
+}
+
+.eval-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+}
+
+.meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 12px;
+}
+
+.answer-display {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 14px;
+    color: #1f2937;
+    line-height: 1.6;
+    margin-top: 6px;
+    min-height: 50px;
+}
+
+.error-msg {
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.eval-result-box {
+    margin-top: 18px;
+    padding: 16px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.8;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Dashboard | LMS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div>
+      <h1>Learning Management System</h1>
+      <p>Student Evaluation & Assessment Dashboard</p>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Assignments</a>
+      <a href="question.html" class="nav-link">Question Bank</a>
+      <a href="result.html" class="nav-link">Result Portal</a>
+      <a href="evaluation.html" class="nav-link active">Evaluation</a>
+    </nav>
+
+    <div class="student-info">
+      <span>Welcome, Evaluator</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="eval-layout">
+      <!-- SUBMISSION LIST -->
+      <section class="card">
+        <h3>Student Submissions</h3>
+        <p style="color:#6b7280; font-size:14px; margin-bottom:16px;">
+          Review submitted assignments, grade marks, and leave feedback.
+        </p>
+        <div style="overflow-x:auto;">
+          <table class="eval-table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Assignment</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="list"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EVALUATION CARD / REVIEW -->
+      <section class="card" id="evalBox" style="display:none;">
+        <div class="eval-detail-header">
+          <h3>Review Submission</h3>
+          <span id="status" class="badge"></span>
+        </div>
+
+        <div class="meta-row">
+          <p><b>Student:</b> <span id="sName"></span></p>
+          <p><b>Assignment:</b> <span id="aName"></span></p>
+          <p><b>Max Marks:</b> <span id="maxMarks"></span></p>
+        </div>
+
+        <div style="margin: 16px 0;">
+          <label style="font-size:13px; font-weight:700; color:#374151;">Student's Submitted Answer:</label>
+          <div class="answer-display" id="answer"></div>
+        </div>
+
+        <div id="formPart">
+          <h4 style="margin: 16px 0 10px; color:#1e3a8a;">Enter Grade & Feedback</h4>
+          
+          <div class="grid-2">
+            <div>
+              <label for="marks">Marks Obtained *</label>
+              <input type="number" id="marks" placeholder="Enter score" min="0">
+              <span style="font-size:12px; color:#6b7280;">Out of <span id="maxMarks2"></span></span>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <label for="feedback">Feedback *</label>
+            <textarea id="feedback" rows="4" placeholder="Write feedback for the student..."></textarea>
+          </div>
+
+          <div id="error" class="error-msg"></div>
+          <button id="submitBtn" class="btn btn-primary" style="margin-top:12px;">Submit Evaluation</button>
+        </div>
+
+        <div id="resultPart" class="eval-result-box" style="display:none;">
+          <h4 style="color:#16a34a; margin-bottom:12px;">&#10003; Evaluation Recorded Successfully</h4>
+          <p><b>Student:</b> <span id="rName"></span></p>
+          <p><b>Assignment:</b> <span id="rAssign"></span></p>
+          <p><b>Marks:</b> <span id="rMarks"></span></p>
+          <p><b>Feedback:</b> <span id="rFeedback"></span></p>
+          <p><b>Status:</b> <span id="rStatus" class="badge b-mcq"></span></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
