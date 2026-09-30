@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Evaluation & Result Portal | LMS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div>
+      <h1>Learning Management System</h1>
+      <p>Student Evaluation & Result Portal</p>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Assignments</a>
+      <a href="question.html" class="nav-link">Question Bank</a>
+      <a href="result.html" class="nav-link active">Result Portal</a>
+    </nav>
+
+    <div class="student-info">
+      <span>Welcome, Rishab</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="result-layout">
+      <!-- Entry Form -->
+      <section class="card form-section">
+        <h2>Enter Assessment Marks</h2>
+        
+        <div class="input-group">
+          <label for="studentName">Student Name</label>
+          <input type="text" id="studentName" value="Rishab Sharma" placeholder="Enter student name">
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="assignment">Assignment Marks</label>
+            <input type="number" id="assignment" value="18" max="20" min="0">
+          </div>
+          <div class="input-group">
+            <label for="assignmentMax">Max Assignment</label>
+            <input type="number" id="assignmentMax" value="20" readonly class="readonly-input">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="quiz">Quiz Marks</label>
+            <input type="number" id="quiz" value="9" max="10" min="0">
+          </div>
+          <div class="input-group">
+            <label for="quizMax">Max Quiz</label>
+            <input type="number" id="quizMax" value="10" readonly class="readonly-input">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="finalAssessment">Final Assessment</label>
+            <input type="number" id="finalAssessment" value="42" max="50" min="0">
+          </div>
+          <div class="input-group">
+            <label for="finalMax">Max Final</label>
+            <input type="number" id="finalMax" value="50" readonly class="readonly-input">
+          </div>
+        </div>
+      </section>
+
+      <!-- Result Display Card -->
+      <section class="card result-card">
+        <div>
+          <div class="result-header">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3>Result Summary</h3>
+              <span id="statusBadge" class="status-badge badge-pass">PASSED</span>
+            </div>
+            <p class="student-name-display" id="displayName">Rishab Sharma</p>
+          </div>
+
+          <ul class="marks-list">
+            <li class="marks-item">
+              <span>Assignment Marks</span>
+              <span id="displayAssignment">18 / 20</span>
+            </li>
+            <li class="marks-item">
+              <span>Quiz Marks</span>
+              <span id="displayQuiz">9 / 10</span>
+            </li>
+            <li class="marks-item">
+              <span>Final Assessment</span>
+              <span id="displayFinal">42 / 50</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-row total">
+            <span>Total Score</span>
+            <span id="displayTotal">69 / 80</span>
+          </div>
+          <div class="summary-row percentage">
+            <span>Percentage</span>
+            <span id="displayPercentage">86.25%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
