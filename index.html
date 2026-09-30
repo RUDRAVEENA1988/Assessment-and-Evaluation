@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Assignments | LMS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Learning Management System</h1>
+            <p>Student Assignment Portal</p>
+        </div>
+
+        <div class="student-info">
+            <span>Welcome, Rishab</span>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <section class="page-heading">
+            <div>
+                <h2>My Assignments</h2>
+                <p>
+                    View your assignments, read instructions
+                    and submit your answers.
+                </p>
+            </div>
+
+            <div class="assignment-count">
+                <span id="totalAssignments">0</span>
+                <small>Total Assignments</small>
+            </div>
+        </section>
+
+
+        <section class="filters">
+
+            <button
+                class="filter-btn active"
+                data-filter="all">
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="pending">
+                Pending
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="submitted">
+                Submitted
+            </button>
+
+        </section>
+
+
+        <section
+            id="assignmentList"
+            class="assignment-grid">
+        </section>
+
+
+        <section
+            id="assignmentDetails"
+            class="details-section hidden">
+
+            <button
+                id="backBtn"
+                class="back-btn">
+                ← Back to Assignments
+            </button>
+
+
+            <div class="details-card">
+
+                <div class="details-header">
+
+                    <div>
+                        <p
+                            id="detailSubject"
+                            class="subject">
+                        </p>
+
+                        <h2 id="detailTitle"></h2>
+                    </div>
+
+                    <span
+                        id="detailStatus"
+                        class="status">
+                    </span>
+
+                </div>
+
+
+                <div class="assignment-info">
+
+                    <div class="info-box">
+                        <span>Due Date</span>
+                        <strong id="detailDueDate"></strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Maximum Marks</span>
+                        <strong id="detailMarks"></strong>
+                    </div>
+
+                </div>
+
+
+                <div class="description">
+
+                    <h3>Assignment Description</h3>
+
+                    <p id="detailDescription"></p>
+
+                </div>
+
+
+                <div class="instructions">
+
+                    <h3>Instructions</h3>
+
+                    <ul id="detailInstructions"></ul>
+
+                </div>
+
+
+                <div class="answer-section">
+
+                    <h3>Your Answer</h3>
+
+                    <textarea
+                        id="answerBox"
+                        placeholder="Write your answer here..."
+                        rows="10">
+                    </textarea>
+
+                    <div class="answer-footer">
+
+                        <span id="wordCount">
+                            0 characters
+                        </span>
+
+                        <button id="submitBtn">
+                            Submit Assignment
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="message"
+                        class="message">
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
