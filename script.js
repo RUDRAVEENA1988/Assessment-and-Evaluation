@@ -519,11 +519,209 @@ class ResultCalculator {
     }
 }
 
+// ========================================================
+// 4. EVALUATION DASHBOARD MODULE
+// ========================================================
+let evalSubmissions = JSON.parse(localStorage.getItem("eval_submissions") || "null") || [
+    {
+        id: 1,
+        student: "Rahul Sharma",
+        assignment: "HTML Basics",
+        answer: "HTML is a markup language used to create the structure of web pages. It uses elements and tags such as headings, paragraphs, images, and links.",
+        totalMarks: 20,
+        marks: "",
+        feedback: "",
+        status: "Pending"
+    },
+    {
+        id: 2,
+        student: "Priya Singh",
+        assignment: "CSS Layout Design",
+        answer: "CSS is used to style web pages. It controls colors, fonts, spacing and layout. Flexbox and CSS Grid provide responsive structure.",
+        totalMarks: 25,
+        marks: "",
+        feedback: "",
+        status: "Pending"
+    },
+    {
+        id: 3,
+        student: "Aman Kumar",
+        assignment: "JavaScript Fundamentals",
+        answer: "JavaScript is a programming language used to make web pages interactive. It uses variables, functions and events to respond to user actions.",
+        totalMarks: 30,
+        marks: "",
+        feedback: "",
+        status: "Pending"
+    },
+    {
+        id: 4,
+        student: "Neha Gupta",
+        assignment: "Responsive Web Design",
+        answer: "Responsive web design allows websites to adjust dynamically according to different screen sizes using CSS media queries.",
+        totalMarks: 20,
+        marks: "",
+        feedback: "",
+        status: "Pending"
+    }
+];
+
+let currentEval = null;
+
+function saveSubmissionsToStorage() {
+    localStorage.setItem("eval_submissions", JSON.stringify(evalSubmissions));
+}
+
+function showSubmissionsList() {
+    const listElem = document.getElementById("list");
+    if (!listElem) return;
+    listElem.innerHTML = "";
+
+    evalSubmissions.forEach(s => {
+        const row = document.createElement("tr");
+        const isEval = s.status === "Evaluated";
+        row.innerHTML = `
+            <td><strong>${s.student}</strong></td>
+            <td>${s.assignment}</td>
+            <td><span class="badge ${isEval ? 'b-mcq' : 'b-desc'}">${s.status}</span></td>
+            <td>
+                <button class="btn btn-sm btn-primary" onclick="openSubmission(${s.id})">
+                    ${isEval ? 'View Evaluation' : 'Evaluate'}
+                </button>
+            </td>
+        `;
+        listElem.appendChild(row);
+    });
+}
+
+function openSubmission(id) {
+    currentEval = evalSubmissions.find(s => s.id === id);
+    if (!currentEval) return;
+
+    const evalBox = document.getElementById("evalBox");
+    const sName = document.getElementById("sName");
+    const aName = document.getElementById("aName");
+    const maxMarks = document.getElementById("maxMarks");
+    const maxMarks2 = document.getElementById("maxMarks2");
+    const status = document.getElementById("status");
+    const answer = document.getElementById("answer");
+    const marksInput = document.getElementById("marks");
+    const feedbackInput = document.getElementById("feedback");
+    const errorBox = document.getElementById("error");
+    const formPart = document.getElementById("formPart");
+    const resultPart = document.getElementById("resultPart");
+
+    if (sName) sName.textContent = currentEval.student;
+    if (aName) aName.textContent = currentEval.assignment;
+    if (maxMarks) maxMarks.textContent = currentEval.totalMarks;
+    if (maxMarks2) maxMarks2.textContent = currentEval.totalMarks;
+
+    if (status) {
+        status.textContent = currentEval.status;
+        status.className = `badge ${currentEval.status === 'Evaluated' ? 'b-mcq' : 'b-desc'}`;
+    }
+
+    if (answer) {
+        answer.textContent = currentEval.answer.trim() || "No answer provided by the student.";
+    }
+
+    if (marksInput) marksInput.value = currentEval.marks || "";
+    if (feedbackInput) feedbackInput.value = currentEval.feedback || "";
+    if (errorBox) errorBox.textContent = "";
+
+    if (evalBox) {
+        evalBox.style.display = "block";
+        evalBox.scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (currentEval.status === "Evaluated") {
+        if (formPart) formPart.style.display = "none";
+        showEvalResult();
+    } else {
+        if (formPart) formPart.style.display = "block";
+        if (resultPart) resultPart.style.display = "none";
+    }
+}
+
+function submitEvaluation() {
+    if (!currentEval) return;
+
+    const marksInput = document.getElementById("marks");
+    const feedbackInput = document.getElementById("feedback");
+    const errorBox = document.getElementById("error");
+    const formPart = document.getElementById("formPart");
+    const status = document.getElementById("status");
+
+    const marks = marksInput ? marksInput.value.trim() : "";
+    const feedback = feedbackInput ? feedbackInput.value.trim() : "";
+
+    if (marks === "") {
+        if (errorBox) errorBox.textContent = "Marks cannot be empty.";
+        return;
+    }
+
+    const numMarks = Number(marks);
+    if (isNaN(numMarks) || numMarks < 0) {
+        if (errorBox) errorBox.textContent = "Marks cannot be less than 0.";
+        return;
+    }
+
+    if (numMarks > currentEval.totalMarks) {
+        if (errorBox) errorBox.textContent = `Marks cannot exceed maximum marks (${currentEval.totalMarks}).`;
+        return;
+    }
+
+    if (feedback === "") {
+        if (errorBox) errorBox.textContent = "Feedback is required.";
+        return;
+    }
+
+    currentEval.marks = numMarks;
+    currentEval.feedback = feedback;
+    currentEval.status = "Evaluated";
+
+    saveSubmissionsToStorage();
+
+    if (errorBox) errorBox.textContent = "";
+    if (status) {
+        status.textContent = currentEval.status;
+        status.className = "badge b-mcq";
+    }
+
+    if (formPart) formPart.style.display = "none";
+    showEvalResult();
+    showSubmissionsList();
+}
+
+function showEvalResult() {
+    if (!currentEval) return;
+    const rName = document.getElementById("rName");
+    const rAssign = document.getElementById("rAssign");
+    const rMarks = document.getElementById("rMarks");
+    const rFeedback = document.getElementById("rFeedback");
+    const rStatus = document.getElementById("rStatus");
+    const resultPart = document.getElementById("resultPart");
+
+    if (rName) rName.textContent = currentEval.student;
+    if (rAssign) rAssign.textContent = currentEval.assignment;
+    if (rMarks) rMarks.textContent = `${currentEval.marks} / ${currentEval.totalMarks}`;
+    if (rFeedback) rFeedback.textContent = currentEval.feedback;
+    if (rStatus) rStatus.textContent = currentEval.status;
+
+    if (resultPart) resultPart.style.display = "block";
+}
+
 // Auto-initialize modules on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById("questionList")) {
         changeType();
         renderQuestions();
+    }
+    if (document.getElementById("list")) {
+        showSubmissionsList();
+        const evalSubmitBtn = document.getElementById("submitBtn");
+        if (evalSubmitBtn) {
+            evalSubmitBtn.addEventListener("click", submitEvaluation);
+        }
     }
     new ResultCalculator();
 });
