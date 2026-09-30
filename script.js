@@ -710,6 +710,232 @@ function showEvalResult() {
     if (resultPart) resultPart.style.display = "block";
 }
 
+// ========================================================
+// 5. QUIZ MODULE
+// ========================================================
+const quizQuestions = [
+    {
+        question: "What does HTML stand for?",
+        options: [
+            "Hyper Text Markup Language",
+            "High Text Machine Language",
+            "Hyper Tool Markup Language",
+            "Home Tool Markup Language"
+        ],
+        answer: 0
+    },
+    {
+        question: "Which language is used to style a web page?",
+        options: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Python"
+        ],
+        answer: 1
+    },
+    {
+        question: "Which language is mainly used to add interactivity to web pages?",
+        options: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "SQL"
+        ],
+        answer: 2
+    },
+    {
+        question: "Which HTML tag is used to create a paragraph?",
+        options: [
+            "<p>",
+            "<h1>",
+            "<div>",
+            "<br>"
+        ],
+        answer: 0
+    },
+    {
+        question: "Which symbol is used for an ID selector in CSS?",
+        options: [
+            ".",
+            "#",
+            "*",
+            "@"
+        ],
+        answer: 1
+    },
+    {
+        question: "Which keyword is used to declare a variable in JavaScript?",
+        options: [
+            "variable",
+            "var",
+            "integer",
+            "string"
+        ],
+        answer: 1
+    },
+    {
+        question: "Which method is used to display a message in the browser console?",
+        options: [
+            "console.log()",
+            "print()",
+            "display()",
+            "message()"
+        ],
+        answer: 0
+    },
+    {
+        question: "Which HTML tag is used to create a hyperlink?",
+        options: [
+            "<link>",
+            "<a>",
+            "<href>",
+            "<url>"
+        ],
+        answer: 1
+    },
+    {
+        question: "Which CSS property is used to change text color?",
+        options: [
+            "font-size",
+            "background",
+            "color",
+            "text-style"
+        ],
+        answer: 2
+    },
+    {
+        question: "Which keyword can be used to define a constant in JavaScript?",
+        options: [
+            "let",
+            "constant",
+            "const",
+            "fixed"
+        ],
+        answer: 2
+    }
+];
+
+function initQuizModule() {
+    const questionElement = document.getElementById("question");
+    if (!questionElement) return;
+
+    let currentQuestion = 0;
+    let selectedAnswers = new Array(quizQuestions.length).fill(null);
+
+    const questionNumber = document.getElementById("question-number");
+    const optionsContainer = document.getElementById("options");
+    const previousButton = document.getElementById("previous-btn");
+    const nextButton = document.getElementById("next-btn");
+    const submitButton = document.getElementById("submit-btn");
+    const resultContainer = document.getElementById("result-container");
+    const totalQuestionsElement = document.getElementById("total-questions");
+    const correctAnswersElement = document.getElementById("correct-answers");
+    const wrongAnswersElement = document.getElementById("wrong-answers");
+    const scoreElement = document.getElementById("score");
+    const percentageElement = document.getElementById("percentage");
+    const restartButton = document.getElementById("restart-btn");
+    const quizCard = document.querySelector(".quiz-card");
+
+    function displayQuestion() {
+        const current = quizQuestions[currentQuestion];
+        if (questionNumber) {
+            questionNumber.textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+        }
+        if (questionElement) {
+            questionElement.textContent = current.question;
+        }
+
+        if (optionsContainer) {
+            optionsContainer.innerHTML = "";
+            current.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.classList.add("quiz-option");
+                button.textContent = option;
+
+                if (selectedAnswers[currentQuestion] === index) {
+                    button.classList.add("selected");
+                }
+
+                button.addEventListener("click", () => {
+                    selectedAnswers[currentQuestion] = index;
+                    displayQuestion();
+                });
+
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        if (previousButton) {
+            previousButton.disabled = currentQuestion === 0;
+        }
+
+        if (nextButton) {
+            if (currentQuestion === quizQuestions.length - 1) {
+                nextButton.style.display = "none";
+            } else {
+                nextButton.style.display = "inline-block";
+            }
+        }
+    }
+
+    function calculateResult() {
+        let correctAnswers = 0;
+        quizQuestions.forEach((q, index) => {
+            if (selectedAnswers[index] === q.answer) {
+                correctAnswers++;
+            }
+        });
+
+        const totalQuestions = quizQuestions.length;
+        const wrongAnswers = totalQuestions - correctAnswers;
+        const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+
+        if (totalQuestionsElement) totalQuestionsElement.textContent = totalQuestions;
+        if (correctAnswersElement) correctAnswersElement.textContent = correctAnswers;
+        if (wrongAnswersElement) wrongAnswersElement.textContent = wrongAnswers;
+        if (scoreElement) scoreElement.textContent = `${correctAnswers} / ${totalQuestions}`;
+        if (percentageElement) percentageElement.textContent = `${percentage}%`;
+
+        if (resultContainer) resultContainer.style.display = "block";
+        if (quizCard) quizCard.style.display = "none";
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", () => {
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        });
+    }
+
+    if (previousButton) {
+        previousButton.addEventListener("click", () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        });
+    }
+
+    if (submitButton) {
+        submitButton.addEventListener("click", calculateResult);
+    }
+
+    if (restartButton) {
+        restartButton.addEventListener("click", () => {
+            currentQuestion = 0;
+            selectedAnswers = new Array(quizQuestions.length).fill(null);
+            if (resultContainer) resultContainer.style.display = "none";
+            if (quizCard) quizCard.style.display = "block";
+            displayQuestion();
+        });
+    }
+
+    displayQuestion();
+}
+
 // Auto-initialize modules on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById("questionList")) {
@@ -723,5 +949,8 @@ document.addEventListener('DOMContentLoaded', () => {
             evalSubmitBtn.addEventListener("click", submitEvaluation);
         }
     }
-    new ResultCalculator();
+    if (document.getElementById("assignment") || document.getElementById("studentName")) {
+        new ResultCalculator();
+    }
+    initQuizModule();
 });
